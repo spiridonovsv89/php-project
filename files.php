@@ -23,18 +23,26 @@ body,td,th {
           <?php include ("blocks/lefttd.php"); ?>
         <td valign="top">
 		<h3 align="center">Файлы</h3>
-        
-        <?
-		$result = mysql_query("SELECT id,title,link FROM files",$db);
-		$myrow = mysql_fetch_array($result);
-		
-		
-	do {	
-printf ("<p><a href='files/%s'>%s</a></p>",$myrow["link"],$myrow["title"]);} 
-while ($myrow = mysql_fetch_array($result));
 
-      ?>
-        
+
+    <?
+
+    $sql_link = "select * from files";
+    $result_link = $conn->query($sql_link);
+    if ($result_link->num_rows > 0){
+    while($row = $result_link->fetch_assoc() ){
+          echo "<p><a href='" . $row["file"] . "'>" .  $row["title"] . "</a></p>";
+    }
+    } else {
+          echo "0 records";
+    }
+
+    ?>
+
+
+
+
+
         </td>
         </tr>
     </table></td>

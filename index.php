@@ -20,6 +20,7 @@ body,td,th {
       <tr>
           <?php include ("blocks/lefttd.php"); ?>
         <td valign="top">
+          <h3 align="center">Новости</h3>
           <?
 
           $sql = "select * from news";
