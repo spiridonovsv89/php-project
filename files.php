@@ -24,9 +24,7 @@ body,td,th {
         <td valign="top">
 		<h3 align="center">Файлы</h3>
 
-
     <?
-
     $sql_link = "select * from files";
     $result_link = $conn->query($sql_link);
     if ($result_link->num_rows > 0){
@@ -34,15 +32,10 @@ body,td,th {
           echo "<p><a href='" . $row["file"] . "'>" .  $row["title"] . "</a></p>";
     }
     } else {
-          echo "0 records";
+          echo "<h3 align='center'>В базе данных нет записей</h3>";
     }
 
     ?>
-
-
-
-
-
         </td>
         </tr>
     </table></td>

@@ -14,10 +14,10 @@ $sql_dep = "select * from departments";
 $result_dep = $conn->query($sql_dep);
 if ($result_dep->num_rows > 0){
 while($row = $result_dep->fetch_assoc() ){
-      echo "<a href=''>" .  $row["title"] . "</a>";
+      echo "<a href='view_dep.php?dep=" . $row["id"] . "'>" .  $row["title"] . "</a>";
 }
 } else {
-      echo "0 records";
+      echo "В базе данных нет записей";
 }
 
 ?>

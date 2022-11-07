@@ -1,31 +1,22 @@
-﻿<? include ("blocks/bd.php");
+<? include ("blocks/bd.php");
+
 if (isset($_GET['dep'])) {$dep = $_GET['dep']; }
 if (!isset($dep)) {$dep = 1;}
 
 if (!preg_match("|^[\d]+$|", $dep)) {
 exit ("<p>Неверный формат запроса! Проверьте URL!");
 }
+$sql_dep = "select * from departments where id='$dep'";
+$result_dep = $conn->query($sql_dep);
 
-$result = mysql_query("SELECT * FROM departments WHERE id='$dep'",$db);
+if ($result_dep->num_rows > 0){
+while($row = $result_dep->fetch_assoc() ){
 
-if (!$result) {
-echo "<p>Извлечь данные из базы не удалось.<br></p>";
-exit(mysql_error());
-}
-
-if (mysql_num_rows($result) > 0) {
-	$myrow = mysql_fetch_array($result);}
-	else {
-		echo "<p>Извлечь данные из базы не удалось, в таблице нет записей.</p>";
-		exit();
-	}
-?>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <title><? echo "Новости - $myrow[name]"; ?></title>
+  <title><? echo "Отделы - " . $row["title"]; }}?> </title>
 <link href="style.css" rel="stylesheet" type="text/css">
-
 
 <style type="text/css">
 body,td,th {
@@ -44,33 +35,33 @@ body,td,th {
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr>
           <?php include ("blocks/lefttd.php"); ?>
-        <td valign="top"><?  
-    
-		$result2 = mysql_query("SELECT news.title,news.date,news.text,departments.name FROM news, departments WHERE dep='$dep' AND news.dep = departments.id ORDER BY date DESC, news.id DESC",$db);
-		$myrow2 = mysql_fetch_array($result2);
-if (mysql_num_rows($result2) > 0)
+        <td valign="top">
 
-{		echo $myrow["text"];
-			do {	
-printf ("<table align='center' class='news'>
-  <tr>
-    <td class='news_title'><p class='news_name'>%s</p>
-	<p class='news_date'>Новость добавлена: %s</p>
-	<p class='news_date'>Размещено для: %s</p></td>
-  </tr>
-  <tr>
-    <td>%s</td>
-  </tr>
-</table><br><br>",$myrow2["title"],$myrow2["date"],$myrow2["name"],$myrow2["text"]);} 
-while ($myrow2 = mysql_fetch_array($result2)); }
+            <?
+  $sql_dep = "select * from workers, departments where departments.id='$dep' and workers.department='$dep'";
+$result_dep = $conn->query($sql_dep);
 
-else
-{
-echo "<p>Для этого отдела новостей пока нет</p>";
-exit();
+
+
+if($result_dep->num_rows > 0){
+
+while($row = $result_dep->fetch_assoc() ){
+
+        echo "<table align='center' class='news'>";
+        echo "<tr>";
+        echo "<td class='news_title'><p class='news_name'>". $row["position"] ."</p>";
+
+        echo "</tr>";
+        echo "<tr>";
+        echo "<td>" . $row["name"] . "</td>";
+        echo "</tr>";
+        echo "</table><br>";
+}}
+
+else {
+      echo "<h3 align='center'>В базе данных нет записей</h3>";
 }
-
-      ?>       
+?>
         </td>
       </tr>
     </table></td>
