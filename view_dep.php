@@ -11,7 +11,7 @@ $result_dep = $conn->query($sql_dep);
 
 if ($result_dep->num_rows > 0){
 while($row = $result_dep->fetch_assoc() ){
-
+?>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
