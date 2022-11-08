@@ -1,10 +1,10 @@
 ﻿<? include ("blocks/bd.php");
 //переводим глобальные массивы в обычные переменные и обрабатываем данные
-$ok = $_POST['ok'];
+$ok = $_POST['ok'] ?? null;
 //заменяем HTML-теги безопасными эквивалентами и вырезаем крайние пробелы
-$name = htmlspecialchars(trim($_POST['name']));
-$email = htmlspecialchars(trim($_POST['email']));
-$message = htmlspecialchars(trim($_POST['message']));
+$name = htmlspecialchars(strval($_POST['name'] ?? null));
+$email = htmlspecialchars(strval($_POST['email'] ?? null));
+$message = htmlspecialchars(strval($_POST['message'] ?? null));
 $message = str_replace("\r\n","<br />",$message); //добавляем переносы
 //Если была нажата нопка OK
 if (isset($ok))
@@ -76,8 +76,8 @@ body,td,th {
 </p>
 <input class="search_button" type="submit" name="ok" value="Отправить">
 </form>
-        <h5>* Все поля обязательны для заполнения </h5>        
-        
+        <h5>* Все поля обязательны для заполнения </h5>
+
         </td>
         </tr>
     </table></td>
