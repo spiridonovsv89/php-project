@@ -1,24 +1,27 @@
-version: '2'
+version: '3.1'
+
 services:
     php-apache-environment:
         container_name: php-project
-        build:
-            context: ./
-            dockerfile: Dockerfile
+        image: spiridonovsv89/dalur:first
         depends_on:
             - db
         ports:
             - 8888:80
+
     db:
         container_name: db
         image: mysql
         restart: always
         environment:
             MYSQL_ROOT_PASSWORD: root
-            MYSQL_DATABASE: db            
+            MYSQL_DATABASE: db
             MYSQL_PASSWORD: root
+        volumes:
+          - "./sql/dump.sql:/docker-entrypoint-initdb.d/dump.sql:ro"
 
     adminer-db:
+        container_name: adminer
         image: adminer
         ports:
             - '8887:8080'
