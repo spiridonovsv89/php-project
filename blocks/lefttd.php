@@ -17,13 +17,13 @@ while($row = $result_dep->fetch_assoc() ){
       echo "<a href='view_dep.php?dep=" . $row["id"] . "'>" .  $row["title"] . "</a>";
 }
 } else {
-      echo "В базе данных нет записей";
+      echo "<p>Отделов нет, разогнали";
 }
 
 ?>
 
 </div>
-<div class="menu_title">Корпоративные ссылки</div>
+<div class="menu_title">Ссылки</div>
 <div id="coolmenu">
 
 <?
@@ -35,7 +35,7 @@ while($row = $result_link->fetch_assoc() ){
       echo "<a href='" . $row["link"] . "'>" .  $row["title"] . "</a>";
 }
 } else {
-      echo "0 records";
+      echo "<p>Ссылок нет, мы в 21 веке";
 }
 
 ?>

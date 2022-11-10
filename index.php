@@ -25,7 +25,7 @@ body,td,th {
 
           $sql = "select * from news";
           $result = $conn->query($sql);
-
+          if ($result->num_rows > 0){
           while($row = $result->fetch_assoc() ){
 
         echo "<table align='center' class='news'>";
@@ -38,11 +38,14 @@ body,td,th {
         echo "</tr>";
         echo "</table><br>";
 
-                              }
+      }}
+          else {
+            echo "<h3 align='center'>Новостей нет, всё по старому</h3>";
+          }
 
 
 
-        $conn->close();
+#        $conn->close();
 
 
           ?>
