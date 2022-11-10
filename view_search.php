@@ -1,6 +1,5 @@
-﻿<? include ("blocks/bd.php");
-mysql_query('set character_set_client="utf8"');
-mysql_query('set character_set_results="utf8"'); 
+<? include ("blocks/bd.php");
+
 if (isset($_POST['submit_s'])) {$submit_s = $_POST['submit_s'];}
 if (isset($_POST['search'])) {$search = $_POST['search'];}
 if (isset($submit_s)) {if (empty($search) or strlen($search) < 4)
@@ -14,7 +13,7 @@ $search = htmlspecialchars($search);
 
 }
 
-else 
+else
 {
 exit("<p>Вы обратились к файлу без необходимых параметров.</p>");
 }
@@ -42,52 +41,47 @@ body,td,th {
       <tr>
        <? include ("blocks/lefttd.php"); ?>
         <td valign="top">
-         
-<? 
-        $result = mysql_query("SELECT * FROM news WHERE MATCH(text) AGAINST('$search')",$db);
 
-if (!$result)
-{
-echo "<p>Запрос на выборку данных из базы не прошел. </p>";
-exit(mysql_error());
-}
+<?
 
-if (mysql_num_rows($result) > 0)
-
-{
-$myrow = mysql_fetch_array($result); 
-
-do 
-{
+    $sql = "SELECT * FROM news WHERE match(text) against('$search')";
+    $result = $conn->query($sql);
 
 
-echo "<h3 align='center'>Результаты поиска:</h3>";
-printf ("<table align='center' class='news'>
-  <tr>
-    <td class='news_title'><p class='news_name'>%s</p>
-	<p class='news_date'>Новость добавлена: %s</p></td>
-  </tr>
-  <tr>
-    <td>%s</td>
-  </tr>
-</table><br><br>",$myrow["title"],$myrow["date"],$myrow["text"]);} 
+    if (!$result)
+    {
+    echo "<p>Запрос на выборку данных из базы не прошел. </p>";
+    exit(mysqli_error());
+    }
 
 
 
-while ($myrow = mysql_fetch_array($result));
+    if ($result->num_rows > 0){
+    while($row = $result->fetch_assoc() ){
+
+
+       echo "<table align='center' class='news'>";
+        echo "<tr>";
+        echo "<td class='news_title'><p class='news_name'>". $row["title"] ."</p>";
+	      echo "<p class='news_date'>Новость добавлена: " . $row["date"] . "</p>";
+        echo "</tr>";
+        echo "<tr>";
+        echo "<td>" . $row["text"] . "</td>";
+        echo "</tr>";
+        echo "</table><br>";
+
+
+    }
+    } else {
+          echo "<h3 align='center'>В базе данных нет записей</h3>";
+    }
 
 
 
-}
 
-else
-{
-echo "<p>Информация по Вашему запросу на сайте не найдена.</p>";
-exit();
-}
 
 ?>
-        
+
         </td>
       </tr>
     </table></td>
