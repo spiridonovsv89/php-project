@@ -9,6 +9,6 @@ variable "ports" {
 }
 
 variable "PATH" {
-  type  = string
-  value = "/home/ubuntu/php-project"
+  type    = string
+  default = "/home/ubuntu/php-project"
 }
