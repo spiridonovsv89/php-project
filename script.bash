@@ -16,5 +16,6 @@ sudo apt install -y docker-ce &&
 sudo apt install -y docker-compose &&
 sudo apt upgrade -y &&
 git clone https://github.com/spiridonovsv89/php-project.git /home/ubuntu/php-project &&
-sudo usermod -aG docker ubuntu &&
-sudo systemctl reboot
+cd /home/ubuntu/php-project &&
+sudo docker-compose up -d &&
+sudo usermod -aG docker ubuntu
