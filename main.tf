@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "us-east-2"
+  region = var.region
 }
 
 terraform {
@@ -20,13 +20,16 @@ resource "aws_instance" "docker" {
     Name    = "Docker"
     Project = "php-project"
   }
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "aws_security_group" "docker_sg" {
   name = "Docker Security Group"
 
   dynamic "ingress" {
-    for_each = ["22", "8888", "8887"]
+    for_each = var.ports
     content {
       from_port   = ingress.value
       to_port     = ingress.value
