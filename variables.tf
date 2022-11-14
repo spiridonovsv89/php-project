@@ -5,10 +5,10 @@ variable "region" {
 
 variable "ports" {
   type    = list(any)
-  default = ["8888", "8887", "22", ]
+  default = ["8888", "8887", "22"]
 }
 
-variable "PATH" {
+variable "path" {
   type    = string
   default = "/home/ubuntu/php-project"
 }

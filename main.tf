@@ -15,7 +15,9 @@ resource "aws_instance" "docker" {
   instance_type          = "t2.micro"
   vpc_security_group_ids = [aws_security_group.docker_sg.id]
   key_name               = "terraform"
-  user_data              = file("script.bash")
+  user_data = templatefile("script.bash", {
+    ComposePath = var.path
+  })
   tags = {
     Name    = "Docker"
     Project = "php-project"

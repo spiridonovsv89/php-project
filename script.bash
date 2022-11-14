@@ -15,6 +15,5 @@ apt-cache policy docker-ce &&
 sudo apt install -y docker-ce &&
 sudo apt install -y docker-compose &&
 sudo apt upgrade -y &&
-export TF_VAR_PATH
-git clone https://github.com/spiridonovsv89/php-project.git $TF_VAR_PATH &&
-sudo docker-compose -f $TF_VAR_PATH/docker-compose.yml up -d
+git clone https://github.com/spiridonovsv89/php-project.git ${ComposePath} &&
+sudo docker-compose -f ${ComposePath}/docker-compose.yml up -d
