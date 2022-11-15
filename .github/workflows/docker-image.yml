@@ -17,7 +17,7 @@ jobs:
     - name: checkout
       uses: actions/checkout@v1
     - name: Build the Docker image
-      run: docker build . --file Dockerfile -t ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:{{ github.sha }}
+      run: docker build . --file Dockerfile -t ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:$(date +%s)
 
     - name: Push Docker image to Docker Hub
-      run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:{{ github.sha }}
+      run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:$(date +%s)
