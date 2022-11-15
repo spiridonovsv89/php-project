@@ -3,7 +3,7 @@ version: '3.1'
 services:
     php-apache-environment:
         container_name: php-project
-        image: spiridonovsv89/dalur:first
+        image: spiridonovsv89/php-project
         depends_on:
             - db
         ports:
