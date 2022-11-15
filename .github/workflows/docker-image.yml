@@ -5,7 +5,7 @@ on:
     branches:
       - master
     paths:
-      - src/**
+      - 'src/**'
       
 jobs:
   docker_ci:
@@ -19,7 +19,7 @@ jobs:
     - name: checkout
       uses: actions/checkout@v1
     - name: Build the Docker image
-      run: docker build . --file Dockerfile -t ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}
+      run: docker build . --file Dockerfile -t ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:{{ github.sha }}
 
     - name: Push Docker image to Docker Hub
-      run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}
+      run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:{{ github.sha }}
