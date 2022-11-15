@@ -2,14 +2,6 @@ provider "aws" {
   region = var.region
 }
 
-terraform {
-  backend "s3" {
-    bucket = "php-project-temporary-bucket"
-    key    = "terraform.tfstate"
-    region = "us-east-2"
-  }
-}
-
 resource "aws_instance" "docker" {
   ami                    = "ami-097a2df4ac947655f"
   instance_type          = "t2.micro"
@@ -19,7 +11,7 @@ resource "aws_instance" "docker" {
     ComposePath = var.path
   })
   tags = {
-    Name    = "Docker"
+    Name    = "Docker Instance"
     Project = "php-project"
   }
   lifecycle {
@@ -45,5 +37,13 @@ resource "aws_security_group" "docker_sg" {
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+terraform {
+  backend "s3" {
+    bucket = "php-project-bucket"
+    key    = "terraform.tfstate"
+    region = "us-east-2"
   }
 }
