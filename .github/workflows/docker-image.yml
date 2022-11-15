@@ -4,6 +4,8 @@ name: Docker Image CI
 on:
   push:
     branches: [ "main" ]
+    paths:
+      - src/**
       
 jobs:
   docker_ci:
