@@ -1,10 +1,9 @@
+
 name: Docker Image CI
 
 on:
   push:
-    branches:
-      - master
-
+    branches: [ "master" ]
       
 jobs:
   docker_ci:
