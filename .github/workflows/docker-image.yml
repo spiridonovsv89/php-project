@@ -47,4 +47,4 @@ jobs:
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      run: terraform apply -replace aws_instance.docker
+      run: terraform apply -replace aws_instance.docker -auto-approve
