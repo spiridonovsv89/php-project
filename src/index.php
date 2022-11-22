@@ -27,16 +27,16 @@ body,td,th {
           $result = $conn->query($sql);
           if ($result->num_rows > 0){
           while($row = $result->fetch_assoc() ){
-
-        echo "<table align='center' class='news'>";
-        echo "<tr>";
-        echo "<td class='news_title'><p class='news_name'>". $row["title"] ."</p>";
-	      echo "<p class='news_date'>Новость добавлена: " . $row["date"] . "</p>";
-        echo "</tr>";
-        echo "<tr>";
-        echo "<td>" . $row["text"] . "</td>";
-        echo "</tr>";
-        echo "</table><br>";
+            $wor = array_revers($row);
+          echo "<table align='center' class='news'>";
+          echo "<tr>";
+          echo "<td class='news_title'><p class='news_name'>". $wor["title"] ."</p>";
+  	      echo "<p class='news_date'>Новость добавлена: " . $wor["date"] . "</p>";
+          echo "</tr>";
+          echo "<tr>";
+          echo "<td>" . $wor["text"] . "</td>";
+          echo "</tr>";
+          echo "</table><br>";
 
       }}
           else {
