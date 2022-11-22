@@ -18,7 +18,7 @@ services:
             MYSQL_DATABASE: db
             MYSQL_PASSWORD: root
         volumes:
-          - "./sql/dump.sql:/docker-entrypoint-initdb.d/dump.sql:ro"
+          - "./src/sql/dump.sql:/docker-entrypoint-initdb.d/dump.sql:ro"
 
     adminer-db:
         container_name: adminer
