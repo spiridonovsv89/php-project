@@ -27,7 +27,7 @@ body,td,th {
           $result = $conn->query($sql);
           if ($result->num_rows > 0){
           while($row = $result->fetch_assoc() ){
-            $wor = array_revers($row);
+            $wor = array_reverse($row);
           echo "<table align='center' class='news'>";
           echo "<tr>";
           echo "<td class='news_title'><p class='news_name'>". $wor["title"] ."</p>";
