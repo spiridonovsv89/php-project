@@ -27,7 +27,7 @@ as web application stack
 
 **Docker**
 - build docker image with dockerfile
-- docker-compose to pull image from registry
+- docker-compose to running multi-container application with pull image from registry
 - docker hub as registry
 
 **Terraform:**
